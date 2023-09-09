@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const authService = require("../services/auth.service");
+const authService = require("./auth.service");
 
 router.get("/", async (req, res) => {
   console.log("hey");
