@@ -11,4 +11,7 @@ router.use("/todos", TodosRoute);
 const UserAuthRoute = require("./modules/auth/auth.routes");
 router.use("/user-auth", UserAuthRoute);
 
+const TranslationRoute = require("./modules/translations/tranlsations.routes");
+router.use("/translations", TranslationRoute);
+
 module.exports = router;
