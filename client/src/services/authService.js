@@ -6,9 +6,9 @@ export default {
     return axios.get(`${BASE_URL}/user-auth`);
   },
   login(authData) {
-    return axios.post(`${BASE_URL}/user-auth/login`, { authData });
+    return axios.post(`${BASE_URL}/user-auth/login`, authData);
   },
   register(authData) {
-    return axios.post(`${BASE_URL}/user-auth/register`, { authData });
+    return axios.post(`${BASE_URL}/user-auth/register`, authData);
   },
 };
