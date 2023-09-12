@@ -1,10 +1,10 @@
 <!-- eslint-disable vuejs-accessibility/label-has-for -->
 <template>
   <div class="login-form">
-    <h2>Iniciar sesión</h2>
+    <h2>{{ translations.login }}</h2>
     <form @submit.prevent="login">
       <div class="form-group">
-        <label for="username">Nombre de usuario:</label>
+        <label for="username">{{ translations.username }}: </label>
         <input
           type="text"
           id="username"
@@ -14,7 +14,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Contraseña:</label>
+        <label for="password">{{ translations.password }}: </label>
         <input
           type="password"
           id="password"
@@ -24,7 +24,7 @@
         />
       </div>
       <div class="form-group">
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit">{{ translations.submit }}</button>
       </div>
     </form>
     <p v-if="response">{{ response }}</p>
@@ -33,23 +33,25 @@
 
 <script>
 import authService from '../services/authService';
+import translationsService from '../services/translationsService';
 
 export default {
   data() {
     return {
+      translations: {},
       username: '',
       password: '',
       response: '',
     };
   },
   mounted() {
-    authService
-      .getAuth()
+    translationsService
+      .getTranslations({ fileName: 'auth', locale: 'en' })
       .then((res) => {
-        console.log(res.data);
+        this.translations = res.data;
       })
       .catch((error) => {
-        console.error('Error getting the TODOS:', error);
+        this.response = `An error has occurred ${error}`;
       });
   },
   methods: {

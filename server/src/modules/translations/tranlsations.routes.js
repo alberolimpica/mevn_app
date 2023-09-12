@@ -3,10 +3,8 @@ const router = express.Router();
 const fs = require('fs').promises;
 const path = require('path');
 
-router.get('/', async (req, res) => {
-    const fileName = req.body.fileName;
-    const locale = req.body.locale;
-
+router.post('/', async (req, res) => {
+    const { fileName, locale } = req.body;
     const filePath = path.join(__dirname, `../../translations/${fileName}/${fileName}-${locale}.json`);
 
     try {

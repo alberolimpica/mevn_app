@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <h1>{{ title }}</h1>
+    <h1>{{ this.translations.todoList }}</h1>
     <div>
       <div>
         <input />
       </div>
-      <button v-on:click="createTodo()">Add Todo</button>
+      <button v-on:click="createTodo()">{{ this.translations.addTodo }}</button>
     </div>
     <ul>
       <li v-for="todo in items" :key="todo.id">{{ todo.todoText }} - {{ todo.author }}</li>
@@ -15,6 +15,7 @@
 
 <script>
 import todosService from '../services/todosService';
+import translationsService from '../services/translationsService';
 
 export default {
   name: 'HomeView',
@@ -24,6 +25,7 @@ export default {
       title: 'Lista de TODOs',
       items: [],
       saveTodo: false,
+      translations: {},
     };
   },
   mounted() {
@@ -34,6 +36,14 @@ export default {
       })
       .catch((error) => {
         console.error('Error getting the TODOS:', error);
+      });
+    translationsService
+      .getTranslations({ fileName: 'home', locale: 'en' })
+      .then((res) => {
+        this.translations = res.data;
+      })
+      .catch((error) => {
+        this.response = `An error has occurred ${error}`;
       });
   },
   methods: {
