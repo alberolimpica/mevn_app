@@ -29,6 +29,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.$store.state.auth.user);
     todosService
       .getAllTodos()
       .then((response) => {

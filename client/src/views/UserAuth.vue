@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import authService from '../services/authService';
 import translationsService from '../services/translationsService';
 
 export default {
@@ -55,14 +54,18 @@ export default {
       });
   },
   methods: {
-    login() {
-      authService
-        .login({
+    async login() {
+      await this.$store
+        .dispatch('authenticate', {
           username: this.username,
           password: this.password,
         })
-        .then((res) => {
-          this.response = res.status === 200 ? 'Todo bien' : 'Hubo un error';
+        .then((success) => {
+          if (success) {
+            this.response = 'Todo bien';
+          } else {
+            this.response = 'Hubo un error';
+          }
         })
         .catch((error) => {
           this.response = `An error has occurred ${error}`;
