@@ -7,7 +7,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/register", async (req, res, next) => {
-  console.log("register");
   try {
     const { username, password } = req.body;
     const newUser = await authService.registerUser(username, password);
@@ -18,7 +17,6 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.post("/login", async (req, res, next) => {
-  console.log("login");
   try {
     const { username, password } = req.body;
     const token = await authService.loginUser(username, password);

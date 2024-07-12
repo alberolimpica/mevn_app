@@ -1,25 +1,16 @@
 <template>
   <div>
-    <header :class="{ 'scrolled-nav': scrollPosition }">
-      <div class="header-content">
-        <LogoComponent />
-        <nav>
-          <router-link to="/">{{ translations.home }}</router-link>
-          <router-link to="/auth">{{ translations.account }}</router-link>
-        </nav>
-      </div>
-    </header>
+    <nav>
+      <router-link to="/">{{ translations.home }}</router-link>
+      <router-link to="/auth">{{ translations.account }}</router-link>
+    </nav>
   </div>
 </template>
 <script>
-import LogoComponent from '@/components/LogoComponent.vue';
 import translationsService from '../services/translationsService';
 
 export default {
   name: 'MenuComponent',
-  components: {
-    LogoComponent,
-  },
   data() {
     return {
       translations: {},
@@ -39,47 +30,4 @@ export default {
 };
 </script>
 
-<style>
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.logo {
-  width: 40px;
-  height: 40px;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.my-component {
-  font-family: 'Noto Serif', serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: normal;
-  color: #175873;
-  font-size: 2.5rem;
-}
-
-.slogan {
-  font-family: 'Amatic SC', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  text-align: center;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
-}
-
-router-link {
-  text-decoration: none;
-  color: inherit;
-}
-</style>
+<style></style>

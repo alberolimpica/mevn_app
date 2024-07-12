@@ -1,19 +1,20 @@
 <template>
   <div class="home">
-    <h1>{{ translations.todoList }}</h1>
+    <h1>{{ this.translations.todoList }}</h1>
     <div>
       <div>
-        <input v-model="newTodo" />
+        <input />
       </div>
-      <button @click="createTodo">{{ translations.addTodo }}</button>
+      <button v-on:click="createTodo()">{{ this.translations.addTodo }}</button>
     </div>
     <ul>
-      <li v-for="todo in todos" :key="todo.id">{{ todo.todoText }}</li>
+      <li v-for="todo in items" :key="todo.id">{{ todo.todoText }} - {{ todo.author }}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import todosService from '../services/todosService';
 import translationsService from '../services/translationsService';
 
 export default {
@@ -21,42 +22,34 @@ export default {
   components: {},
   data() {
     return {
-      newTodo: '',
+      title: 'Lista de TODOs',
+      items: [],
+      saveTodo: false,
       translations: {},
     };
   },
-  computed: {
-    todos() {
-      return this.$store.getters.getTodos;
-    },
-  },
   mounted() {
-    this.fetchTodos();
-    this.loadTranslations();
+    console.log(this.$store.state.auth.user);
+    todosService
+      .getAllTodos()
+      .then((response) => {
+        this.items = response.data;
+      })
+      .catch((error) => {
+        console.error('Error getting the TODOS:', error);
+      });
+    translationsService
+      .getTranslations({ fileName: 'home', locale: 'en' })
+      .then((res) => {
+        this.translations = res.data;
+      })
+      .catch((error) => {
+        this.response = `An error has occurred ${error}`;
+      });
   },
   methods: {
-    async fetchTodos() {
-      try {
-        await this.$store.dispatch('fetchTodos');
-      } catch (error) {
-        console.error('Error getting the TODOS:', error);
-      }
-    },
-    async loadTranslations() {
-      try {
-        const res = await translationsService.getTranslations({ fileName: 'home', locale: 'en' });
-        this.translations = res.data;
-      } catch (error) {
-        console.error('An error has occurred:', error);
-      }
-    },
-    async createTodo() {
-      try {
-        await this.$store.dispatch('createTodo', { todoData: this.newTodo });
-        this.newTodo = '';
-      } catch (error) {
-        console.error('An error has occurred:', error);
-      }
+    createTodo() {
+      console.log('Hey');
     },
   },
 };

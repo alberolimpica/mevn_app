@@ -1,3 +1,4 @@
+<!-- eslint-disable vuejs-accessibility/label-has-for -->
 <template>
   <div class="login-form">
     <h2>{{ translations.login }}</h2>
@@ -7,7 +8,7 @@
         <input
           type="text"
           id="username"
-          v-model="loginData.username"
+          v-model="username"
           required
           autocomplete="current-username"
         />
@@ -17,7 +18,7 @@
         <input
           type="password"
           id="password"
-          v-model="loginData.password"
+          v-model="password"
           required
           autocomplete="current-password"
         />
@@ -31,17 +32,14 @@
 </template>
 
 <script>
-import translationsService from '../../services/translationsService';
+import translationsService from '../services/translationsService';
 
 export default {
-  name: 'UserLogin',
   data() {
     return {
       translations: {},
-      loginData: {
-        username: '',
-        password: '',
-      },
+      username: '',
+      password: '',
       response: '',
     };
   },
@@ -59,8 +57,8 @@ export default {
     async login() {
       await this.$store
         .dispatch('authenticate', {
-          username: this.loginData.username,
-          password: this.loginData.password,
+          username: this.username,
+          password: this.password,
         })
         .then((success) => {
           if (success) {

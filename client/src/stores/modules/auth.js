@@ -16,8 +16,7 @@ const mutations = {
 
 const actions = {
   authenticate({ commit }, { username, password }) {
-    return authService
-      .login({ username, password })
+    return authService.login({ username, password })
       .then((res) => {
         if (res.status === 200) {
           commit('setUser', username);
@@ -31,20 +30,6 @@ const actions = {
   },
   logout({ commit }) {
     commit('logout');
-  },
-  register({ commit }, { username, password }) {
-    return authService
-      .register({ username, password })
-      .then((res) => {
-        if (res.status === 200) {
-          commit('setUser', username);
-          return true;
-        }
-        return false;
-      })
-      .catch((error) => {
-        throw error;
-      });
   },
 };
 
