@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const TodosSchema = new mongoose.Schema({
+const Todo = new mongoose.Schema(
+  {
     todoText: String,
-    author: String,
-},
-    { versionKey: false });
+  },
+  { versionKey: false }
+);
 
-
-module.exports = mongoose.model("todo", TodosSchema);
+module.exports = mongoose.model("todo", Todo);

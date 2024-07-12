@@ -17,8 +17,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import './styles/fonts.scss';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, 'Amatic SC', sans-serif, 'Noto Serif', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

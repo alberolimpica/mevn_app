@@ -2,5 +2,6 @@
   "login": "Log in",
   "username": "Username",
   "password": "Password",
-  "submit": "Submit"
+  "submit": "Submit",
+  "signUp": "Sign up"
 }
