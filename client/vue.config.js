@@ -1,14 +1,14 @@
-const { defineConfig } = require('@vue/cli-service');
-const path = require('path');
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
-module.exports = defineConfig({
-  transpileDependencies: true,
-
-  configureWebpack: {
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, 'src'),
-      },
-    },
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: { '@': path.resolve(__dirname, 'src') }
   },
-});
+  server: {
+    port: 5173,
+    open: true
+  }
+})

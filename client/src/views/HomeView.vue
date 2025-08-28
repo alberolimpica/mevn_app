@@ -7,7 +7,7 @@
       </div>
       <button v-on:click="createTodo()">{{ this.translations.addTodo }}</button>
     </div>
-    <ul>
+    <ul v-if="items">
       <li v-for="todo in items" :key="todo.id">{{ todo.todoText }} - {{ todo.author }}</li>
     </ul>
   </div>
@@ -29,7 +29,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$store.state.auth.user);
     todosService
       .getAllTodos()
       .then((response) => {
@@ -38,6 +37,7 @@ export default {
       .catch((error) => {
         console.error('Error getting the TODOS:', error);
       });
+      
     translationsService
       .getTranslations({ fileName: 'home', locale: 'en' })
       .then((res) => {

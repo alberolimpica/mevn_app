@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import UserAuth from '../views/UserAuth.vue';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 const routes = [
   {
     path: '/',
@@ -15,7 +17,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(BASE_URL),
   routes,
 });
 
