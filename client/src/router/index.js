@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import UserAuth from '../views/UserAuth.vue';
-
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
@@ -13,11 +12,15 @@ const routes = [
     path: '/auth',
     name: 'auth',
     component: UserAuth,
-  },
+  }, {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFound
+  }
 ];
 
 const router = createRouter({
-  history: createWebHistory(BASE_URL),
+  history: createWebHistory(),
   routes,
 });
 

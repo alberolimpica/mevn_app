@@ -2,5 +2,7 @@
   "login": "Iniciar sesión",
   "username": "Nombre de usuario",
   "password": "Contraseña",
-  "submit": "Enviar"
+  "submit": "Enviar",
+  "signUp": "Registrarse",
+  "noAccount": "No tiene una cuenta?"
 }
