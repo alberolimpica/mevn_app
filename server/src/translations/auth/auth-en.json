@@ -1,13 +1,14 @@
 {
   "login": "Log in",
-  "username": "Username",
   "password": "Password",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "confirmPassword": "Confirm password",
   "submit": "Submit",
   "signUp": "Sign up",
   "noAccount": "Don't have an account?",
   "join": "Join to get started!",
-  "email": "E-mail address",
-  "repeatPassword": "Repeat password",
+  "email": "E-mail",
   "passwordMustMatch": "Passwords must match",
   "haveAccount": "Already a member?",
   "clickLogIn": "Click to log in"

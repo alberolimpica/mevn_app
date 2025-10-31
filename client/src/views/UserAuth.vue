@@ -5,13 +5,13 @@
         <h2 class="text-3xl font-bold text-gray-800 mb-6">{{ translations.login }}</h2>
         <form @submit.prevent="login" class="space-y-4">
           <div class="form-group">
-            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">{{ translations.username }}</label>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{ translations.email }}</label>
             <input
               type="text"
-              id="username"
-              v-model="username"
+              id="email"
+              v-model="email"
               required
-              autocomplete="current-username"
+              autocomplete="current-email"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
             />
           </div>
@@ -55,7 +55,7 @@
         <form @submit.prevent="signup" class="space-y-4">
           <div class="grid grid-cols-2 gap-3">
             <div class="form-group">
-              <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+              <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">{{ translations.firstName }}</label>
               <input
                 type="text"
                 id="firstName"
@@ -66,7 +66,7 @@
               />
             </div>
             <div class="form-group">
-              <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+              <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">{{ translations.lastName }}</label>
               <input
                 type="text"
                 id="lastName"
@@ -78,7 +78,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{ translations.email }}</label>
             <input
               type="email"
               id="email"
@@ -101,7 +101,7 @@
               />
             </div>
             <div class="form-group">
-              <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+              <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">{{ translations.confirmPassword }}</label>
               <input
                 type="password"
                 id="confirmPassword"
@@ -111,7 +111,7 @@
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                 :class="{'border-red-500': confirmPassword && password !== confirmPassword}"
               />
-              <p v-if="confirmPassword && password !== confirmPassword" class="text-red-500 text-xs mt-1">Passwords do not match</p>
+              <p v-if="confirmPassword && password !== confirmPassword" class="text-red-500 text-xs mt-1">{{ translations.passwordMustMatch }}</p>
             </div>
           </div>
           <div class="form-group">
@@ -137,7 +137,6 @@ export default {
       signIn,
       isLogIn: true,
       translations: {},
-      username: '',
       password: '',
       confirmPassword: '',
       firstName: '',
@@ -160,7 +159,6 @@ export default {
     isLogIn() {
       // Clear form fields and response when switching between login/signup
       this.response = '';
-      this.username = '';
       this.password = '';
       this.confirmPassword = '';
       this.firstName = '';
@@ -172,7 +170,7 @@ export default {
     async login() {
       await this.$store
         .dispatch('authenticate', {
-          username: this.username,
+          email: this.email,
           password: this.password,
         })
         .then((success) => {
