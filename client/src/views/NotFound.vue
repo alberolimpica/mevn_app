@@ -6,7 +6,7 @@
       <img
         :src="notFound"
         alt="{{translations.notFound}}"
-        class="w-auto h-auto max-w-full max-h-[90vh] block"
+        class="w-auto h-auto max-w-full max-h-[40vh] block"
       />
     </router-link>
   </div>

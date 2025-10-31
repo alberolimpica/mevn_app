@@ -31,11 +31,23 @@
         <div> {{ translations.noAccount }} <a @click="isLogIn=false">{{ translations.signUp }}</a></div>
         <p v-if="response">{{ response }}</p>
       </div>
-      <div class="flex-1 bg-red-300"></div>
+      <div class="flex-1 bg-red-300  items-center justify-center flex flex-col">
+        <img
+        :src="logIn"
+        alt="{{ translations.login }} image"
+        class="w-auto h-auto max-w-full max-h-[30vh] block"
+      />
+      </div>
     </div>
     
     <div v-else class="flex h-screen">
-      <div class="flex-1 bg-red-300"></div>
+      <div class="flex-1 bg-red-300  items-center justify-center flex flex-col">
+        <img
+        :src="signIn"
+        alt="{{ translations.signUp }} image"
+        class="w-auto h-auto max-w-full max-h-[30vh] block"
+      />
+      </div>
       <div class="flex-1 bg-blue-300 place-content-center">
         <h2>{{ translations.signUp }}</h2>
         <form @submit.prevent="login">
@@ -92,10 +104,14 @@
 
 <script>
 import translationsService from '../services/translationsService';
+import logIn from '@/images/log_in.png'
+import signIn from '@/images/sign_in.png'
 
 export default {
   data() {
     return {
+      logIn,
+      signIn,
       isLogIn: true,
       translations: {},
       username: '',
